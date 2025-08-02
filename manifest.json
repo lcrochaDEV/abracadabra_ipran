@@ -1,0 +1,58 @@
+{
+  "manifest_version": 3,
+  "name": "Abracadabra IPRAN",
+  "description": "App para verificar de circuitos críticos",
+  "author": "Lucas Rocha",
+  "version": "23.03.13",
+  "permissions": ["activeTab", "scripting", "alarms", "notifications", "storage"],
+  "icons": {
+	  "128":"./imagen/abracadabra.png"
+	},
+
+  "action": {
+	"default_title": "App Monitora IPRAN",
+    "default_icon": "./imagen/abracadabra.png"
+    //"default_popup": "./popup.html"
+  },
+  
+	"background": {
+		//"service_worker": "./background/background.js",
+		"type": "module" //optional
+	},
+
+    "content_scripts": [{
+		"matches": [
+			"http://www-grbs.embratel.net.br/grb/topologia_rede*",
+			"http://arcos.nocclarobrasil.com.br/Arcos/CentauroRegistro.aspx*",
+			"http://sit.nocclarobrasil.com.br/Arcos/SitRegistro.aspx*",
+			"http://10.13.54.150:20020/navegacao/framesetNivel2TarefaRal.cfm*",
+			"http://sir.nt.embratel.com.br/navegacao/framesetNivel2TarefaRal.cfm*",
+			"http://192.168.1.254:80/"
+		],
+	//"exclude_matches": ["http://10.13.54.150:20020/navegacao/framesetNivel2TarefaRec.cfm*"],
+		
+		"css": ["./menu.css"],
+		"js": [
+			"./tags/createTags.js",
+			"./connect/fetch-abre-ral.js",
+			"./ControllerClass/CriateTag.js",
+			"./tags/textarea-tag.js",
+			"./admin/admin.js",
+			"./ControllerClass/ClassVerificarLinks.js",
+            "./popup/popup.js",
+			"./json/estados.js",
+			"./sir_tags/menu-flutuante-fca.js"
+		],
+		"all_frames": true,
+		"match_about_blank": true,
+		"html": ["./index.html"]
+	   }
+	],
+	
+	"host_permissions": [
+		"http://192.168.1.254:80/"
+	 ],
+	"optional_host_permissions": [
+		"*://*/*"
+	]
+}
