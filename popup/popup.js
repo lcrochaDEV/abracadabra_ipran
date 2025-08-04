@@ -16,6 +16,8 @@ window.addEventListener('load', async () => {
 window.addEventListener('load', async () => {
     document.querySelector('.btnpopup').addEventListener('click', async (event) => {
         event.preventDefault();
+        let sr_only = document.querySelector(".loading");
+        sr_only.style.display = 'block';
         const ral = await criarRal();
         let textarea = document.querySelector('.txtarea');
         let aletaral = document.querySelector('.alertas');
@@ -24,9 +26,11 @@ window.addEventListener('load', async () => {
         if (matchRal !== null) {
             textarea.value += matchRal[0];
             aletaral.textContent = ral;
+            sr_only.style.display = 'none';
         }else{
             aletaral.style.color = 'red';
-            aletaral.textContent = ral;       
+            aletaral.textContent = ral;    
+            sr_only.style.display = 'none';   
         }
 
     })

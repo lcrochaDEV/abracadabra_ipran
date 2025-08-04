@@ -21,6 +21,10 @@ window.addEventListener("load", () => {
                                                             <textarea class="txtarea" value="" rows="14" cols="70"></textarea>
                                                             <input type="submit" value="RAL" class="btnpopup">
                                                             <p class="alertas"></p>
+                                                            <label class="loading">
+                                                                <span class="sr-only">Loading progress</span>
+                                                                <progress></progress>
+                                                            </label>
                                                         </div>`;
         console.log('Log de Load RGB TAG')      
     }
